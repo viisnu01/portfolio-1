@@ -1,13 +1,38 @@
 // Smooth scroll for nav links
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', function (e) {
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', e => {
     e.preventDefault();
-    document.querySelector(this.getAttribute('href'))
+    document
+      .querySelector(link.getAttribute('href'))
       .scrollIntoView({ behavior: 'smooth' });
   });
 });
 
-// Theme toggle (simple)
+// ===== Scroll-based Navbar Highlight =====
+const sections = document.querySelectorAll('section');
+const navLinks = document.querySelectorAll('.nav a');
+
+function highlightMenu() {
+  let scrollPos = window.scrollY + 150; // offset for fixed header
+  sections.forEach(sec => {
+    if (
+      scrollPos >= sec.offsetTop &&
+      scrollPos < sec.offsetTop + sec.offsetHeight
+    ) {
+      const id = sec.getAttribute('id');
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${id}`) {
+          link.classList.add('active');
+        }
+      });
+    }
+  });
+}
+window.addEventListener('scroll', highlightMenu);
+window.addEventListener('load', highlightMenu);
+
+// ===== Theme Toggle =====
 const themeBtn = document.getElementById('themeToggle');
 if (themeBtn) {
   themeBtn.addEventListener('click', () => {
@@ -24,9 +49,10 @@ if (themeBtn) {
   });
 }
 
-// Reveal on scroll
+// ===== Reveal / Fade-in on Scroll =====
 function reveal() {
-  document.querySelectorAll('.card, .cert, .about-right, .hero-inner')
+  document
+    .querySelectorAll('.card, .cert-card, .about-right, .hero-inner')
     .forEach(el => {
       const rect = el.getBoundingClientRect();
       if (rect.top < window.innerHeight - 80) {
@@ -40,24 +66,19 @@ function reveal() {
 }
 window.addEventListener('scroll', reveal);
 window.addEventListener('load', reveal);
-// Fade-in certificates on scroll
-const certs = document.querySelectorAll('.cert');
-window.addEventListener('scroll', () => {
-  certs.forEach(cert => {
-    const rect = cert.getBoundingClientRect();
-    if (rect.top < window.innerHeight - 100) {
-      cert.classList.add('visible');
-    }
-  });
-});
 
-
-// Expand / collapse for project cards
+// ===== Expand / Collapse “Learn More” =====
 document.querySelectorAll('.card .learn').forEach(link => {
   link.addEventListener('click', e => {
     e.preventDefault();
     const card = link.closest('.card');
     card.classList.toggle('open');
+    if (card.classList.contains('open')) {
+      link.textContent = 'Show Less ↑';
+    } else {
+      link.textContent = 'Learn More ↓';
+    }
   });
 });
+
 
