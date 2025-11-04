@@ -1,0 +1,39 @@
+
+// Smooth scroll for nav links
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click', function(e){
+    e.preventDefault();
+    document.querySelector(this.getAttribute('href')).scrollIntoView({behavior:'smooth'});
+  });
+});
+
+// Theme toggle (simple)
+const themeBtn = document.getElementById('themeToggle');
+themeBtn.addEventListener('click', ()=>{
+  document.documentElement.classList.toggle('light');
+  if(document.documentElement.classList.contains('light')){
+    document.documentElement.style.setProperty('--bg','#ffffff');
+    document.documentElement.style.setProperty('color','black');
+    document.documentElement.style.setProperty('--card','#f6f6f6');
+  } else {
+    document.documentElement.style.removeProperty('--bg');
+    document.documentElement.style.removeProperty('color');
+    document.documentElement.style.removeProperty('--card');
+  }
+});
+
+// simple reveal on scroll
+const reveal = ()=>{
+  document.querySelectorAll('.card, .cert, .about-right, .hero-inner').forEach(el=>{
+    const rect = el.getBoundingClientRect();
+    if(rect.top < window.innerHeight - 80){
+      el.style.opacity=1;
+      el.style.transform='translateY(0)';
+    } else {
+      el.style.opacity=0;
+      el.style.transform='translateY(12px)';
+    }
+  });
+}
+window.addEventListener('scroll', reveal);
+window.addEventListener('load', reveal);
