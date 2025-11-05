@@ -105,7 +105,6 @@ section {
 .hero-inner {
   position: relative;
   z-index: 2;
-  animation: fadeSlideIn 1.5s ease-out;
 }
 
 .hero-inner h1 {
@@ -116,11 +115,6 @@ section {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   transition: background 0.5s ease;
-}
-
-@keyframes fadeSlideIn {
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: translateY(0); }
 }
 
 .light .hero-inner h1 {
@@ -134,24 +128,90 @@ section {
   font-weight: 400;
   color: #cfcfcf;
   margin-top: 10px;
-  opacity: 0;
-  animation: fadeSlideIn 1.5s ease-out 0.4s forwards;
 }
 
-/* === Hero Buttons Animation === */
-.cta .btn {
-  margin-top: 15px;
+.accent {
+  color: var(--accent);
+}
+
+/* === CTA & Buttons === */
+.cta {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.btn {
   display: inline-block;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeUp 1.4s ease-out forwards;
+  padding: 12px 26px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 1;
 }
 
-.cta .btn:nth-child(1) { animation-delay: 0.6s; }
-.cta .btn:nth-child(2) { animation-delay: 0.8s; }
+/* 🌙 Dark Theme Buttons */
+.btn {
+  background: rgba(255, 255, 255, 0.05);
+  color: #e6e6e6;
+}
+
+.btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+/* ⚡ Primary Button (Explore More ↓) */
+.btn.primary {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  box-shadow: 0 0 15px rgba(37, 99, 235, 0.6);
+  animation: soft-pulse 2.5s infinite ease-in-out;
+}
+
+.btn.primary:hover {
+  transform: scale(1.06);
+  box-shadow: 0 0 25px rgba(37, 99, 235, 0.9);
+}
+
+/* 🌈 Secondary Button (Download Resume) */
+.btn.smooth {
+  background: transparent;
+  color: #e6e6e6;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn.smooth:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* ✨ Pulse Animation */
+@keyframes soft-pulse {
+  0% { box-shadow: 0 0 8px rgba(37,99,235,0.4); }
+  50% { box-shadow: 0 0 22px rgba(37,99,235,0.8); }
+  100% { box-shadow: 0 0 8px rgba(37,99,235,0.4); }
+}
+
+/* 🎬 Entrance Animation for Hero Buttons */
+.cta .btn {
+  opacity: 0;
+  transform: translateY(25px);
+  animation: fadeUp 1.2s ease forwards;
+}
+.cta .btn:nth-child(1) { animation-delay: 0.3s; }
+.cta .btn:nth-child(2) { animation-delay: 0.5s; }
 
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
+  from { opacity: 0; transform: translateY(25px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
@@ -160,6 +220,7 @@ section {
   padding: 80px 0;
   text-align: left;
 }
+
 .about-inner {
   display: flex;
   align-items: center;
@@ -167,6 +228,7 @@ section {
   gap: 60px;
   flex-wrap: wrap;
 }
+
 .avatar {
   width: 240px;
   height: 240px;
@@ -175,20 +237,24 @@ section {
   object-fit: cover;
   display: block;
 }
+
 .about-right {
   flex: 1;
   min-width: 280px;
 }
+
 .about-right h2 {
   font-size: 36px;
   margin: 0 0 10px;
 }
+
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 12px;
   margin-top: 10px;
 }
+
 .skills-grid div {
   background: var(--card);
   padding: 12px;
@@ -200,26 +266,29 @@ section {
 .projects {
   padding: 80px 0;
 }
+
 .cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 28px;
 }
+
 .card {
   background: var(--card);
   padding: 28px;
   border-radius: 12px;
   box-shadow: 0 6px 20px rgba(1, 1, 1, 0.4);
   border: 1px solid rgba(255, 255, 255, 0.02);
-  transition: transform 0.25s, box-shadow 0.25s, background 0.25s;
+  transition: transform 0.25s, box-shadow 0.25s;
   overflow: hidden;
-  cursor: pointer;
 }
+
 .card:hover {
   transform: translateY(-8px);
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
-  background: rgba(255, 255, 255, 0.05);
 }
+
+/* === Project Expand Animation === */
 .card .hidden {
   max-height: 0;
   overflow: hidden;
@@ -227,8 +296,9 @@ section {
   transform: scaleY(0.9);
   transition: max-height 0.6s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.6s ease, transform 0.6s ease;
 }
-.card.open .hidden {
-  max-height: 300px;
+
+.card .hidden.open {
+  max-height: 200px;
   opacity: 1;
   transform: scaleY(1);
 }
@@ -237,29 +307,37 @@ section {
 .certs {
   padding: 80px 0;
 }
+
 .certificates-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 25px;
   margin-top: 40px;
+  min-height: 200px;
 }
+
 .cert-card {
   background: var(--card);
   border-radius: 12px;
   padding: 24px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  opacity: 1;
+  transform: translateY(0);
   transition: all 0.6s ease;
 }
+
 .cert-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.6);
   background: rgba(255, 255, 255, 0.04);
 }
+
 .cert-card h3 {
   color: #fff;
   margin: 8px 0;
   font-size: 1.1rem;
 }
+
 .cert-card p {
   margin: 4px 0;
   color: var(--muted);
@@ -279,6 +357,7 @@ section {
   margin-bottom: 10px;
   color: #fff;
 }
+
 .badge.internship { background: #f59e0b; }
 .badge.achievement { background: #2563eb; }
 .badge.finalist { background: #e11d48; }
@@ -290,88 +369,15 @@ section {
   padding: 80px 0;
   text-align: center;
 }
+
 .contact .contact-actions {
   display: flex;
   gap: 12px;
   justify-content: center;
   margin: 20px 0;
-/* === Contact + CTA Buttons === */
-.btn {
-  display: inline-block;
-  padding: 12px 22px;
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  background: transparent;
-  color: #e6e6e6;
-  text-decoration: none;
-  font-weight: 600;
-  letter-spacing: 0.3px;
-  cursor: pointer;
-  transition: all 0.35s ease;
-  opacity: 1; /* ✅ Always visible */
-  transform: translateY(0);
 }
 
-.btn.primary {
-  background: var(--accent);
-  color: #fff;
-  border: none;
-  box-shadow: 0 0 10px rgba(37, 99, 235, 0.5);
-  animation: soft-pulse 2.2s infinite ease-in-out;
-}
-
-.btn.primary:hover {
-  transform: scale(1.08);
-  box-shadow: 0 0 25px rgba(37, 99, 235, 0.8);
-}
-
-/* Subtle hover for secondary buttons */
-.btn:not(.primary):hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: #fff;
-  transform: translateY(-3px);
-}
-
-/* Soft glowing pulse */
-@keyframes soft-pulse {
-  0% { box-shadow: 0 0 8px rgba(37, 99, 235, 0.3); }
-  50% { box-shadow: 0 0 22px rgba(37, 99, 235, 0.7); }
-  100% { box-shadow: 0 0 8px rgba(37, 99, 235, 0.3); }
-}
-
-/* === Fix for Light Theme Buttons === */
-.light .btn {
-  color: #111;
-  border-color: rgba(0, 0, 0, 0.15);
-  background: rgba(0, 0, 0, 0.03);
-}
-
-.light .btn.primary {
-  background: var(--accent);
-  color: #fff;
-  border: none;
-  box-shadow: 0 0 10px rgba(37, 99, 235, 0.3);
-  animation: soft-pulse 2.2s infinite ease-in-out;
-}
-
-.light .btn.primary:hover {
-  box-shadow: 0 0 25px rgba(37, 99, 235, 0.7);
-}
-
-.light .btn:not(.primary):hover {
-  background: rgba(0, 0, 0, 0.08);
-  transform: translateY(-3px);
-  color: #111;
-}
-
-
-@keyframes pulse-glow {
-  0% { box-shadow: 0 0 0 rgba(37, 99, 235, 0.6); }
-  50% { box-shadow: 0 0 20px rgba(37, 99, 235, 0.8); }
-  100% { box-shadow: 0 0 0 rgba(37, 99, 235, 0.6); }
-}
-
-/* === Light Theme Fixes === */
+/* === Light Theme === */
 :root.light {
   --bg: #f9f9f9;
   --card: #ffffff;
@@ -392,40 +398,21 @@ section {
 
 .light .nav a { color: #333; }
 
-.light .card,
+.light h2, .light h3 {
+  color: #111;
+}
+
 .light .cert-card {
   background: var(--card);
   color: #111;
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-.light .cert-card h3,
-.light .card h3 {
-  color: #111;
-}
-.light .cert-card p,
-.light .card p {
-  color: #333;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Badges visible in light mode */
-.light .badge {
-  color: #fff;
-}
-.light .badge.internship { background: #f59e0b; }
-.light .badge.achievement { background: #2563eb; }
-.light .badge.finalist { background: #e11d48; }
-.light .badge.course { background: #059669; }
-.light .badge.participation { background: #9333ea; }
-
-.light .btn {
-  color: #111;
-  border-color: rgba(0, 0, 0, 0.15);
-}
-.light .btn.primary {
-  background: var(--accent);
-  color: #fff;
-}
+.light .badge.internship { background: #f59e0b; color: #fff; }
+.light .badge.achievement { background: #2563eb; color: #fff; }
+.light .badge.finalist { background: #e11d48; color: #fff; }
+.light .badge.course { background: #059669; color: #fff; }
+.light .badge.participation { background: #9333ea; color: #fff; }
 
 /* === Responsive Design === */
 @media (max-width: 900px) {
@@ -434,11 +421,20 @@ section {
     align-items: center;
     text-align: center;
   }
-  .avatar { margin-bottom: 20px; }
-  .skills-grid { grid-template-columns: 1fr; }
-  .hero-inner h1 { font-size: 36px; }
-  .cards, .certificates-grid { grid-template-columns: 1fr; }
+  .avatar {
+    margin-bottom: 20px;
+  }
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+  .hero-inner h1 {
+    font-size: 36px;
+  }
+  .cards, .certificates-grid {
+    grid-template-columns: 1fr;
+  }
 }
+
 
 
 
