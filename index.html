@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Viisnu Anand S | Portfolio</title>
   
-  <!-- 🔍 SEO META TAGS -->
   <meta name="description" content="Portfolio of Viisnu Anand S — Electronics & Communication Engineer passionate about Robotics, Drones, and Embedded Systems." />
   <meta name="keywords" content="Viisnu Anand, Robotics Engineer, Drones, Embedded Systems, Portfolio, ECE, AI Robotics" />
   <meta name="author" content="Viisnu Anand S" />
@@ -15,13 +14,8 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://viisnu01.github.io/portfolio-1/" />
 
-  <!-- 🎨 Favicon -->
   <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
-
-  <!-- 🧩 Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;800&family=Source+Sans+3:wght@400;500&display=swap" rel="stylesheet">
-
-  <!-- 💅 Styles -->
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -46,14 +40,14 @@
     <h1>Hi, I'm <span class="accent">Viisnu Anand S</span></h1>
     <p class="tagline">Electronics & Communication Engineer | Robotics & Drones Enthusiast</p>
     <div class="cta">
-      <a href="#projects" class="btn primary">Explore More ↓</a>
-      <a href="assets/Resume.pdf" class="btn" target="_blank">Download Resume</a>
+      <a href="#projects" class="btn primary pulse">Explore More ↓</a>
+      <a href="assets/Resume.pdf" class="btn smooth" target="_blank">Download Resume</a>
     </div>
   </div>
 </section>
 
 <!-- === ABOUT SECTION === -->
-<section id="about" class="about">
+<section id="about" class="about fade-in">
   <div class="container about-inner">
     <img src="assets/viisnu.jpg" alt="Viisnu Anand S" class="avatar">
     <div class="about-right">
@@ -83,31 +77,46 @@
 
       <article class="card">
         <h3>Smart India Hackathon 2024</h3>
-        <p>Developed an AI-powered DVB-S2X Signal Detection & Classification system using deep learning and signal processing techniques for satellite communication efficiency.</p>
+        <p>AI-powered DVB-S2X Signal Detection & Classification system using deep learning and signal processing.</p>
+        <div class="hidden">
+          <p>Designed with PyTorch & MATLAB, improving classification accuracy by 18%. Integrated adaptive thresholding and CNN-based modulation recognition.</p>
+        </div>
         <a class="learn" href="#">Learn More ↓</a>
       </article>
 
       <article class="card">
         <h3>IRoC-U 2025 Challenge</h3>
-        <p>Built an autonomous drone with LiDAR and SLAM-based navigation for GPS-denied environments using Jetson Orin Nano and Pixhawk integration.</p>
+        <p>Autonomous drone with LiDAR and SLAM-based navigation for GPS-denied environments.</p>
+        <div class="hidden">
+          <p>Jetson Orin Nano + Pixhawk integration, using ZED 2i for stereo depth and DroneKit for control automation.</p>
+        </div>
         <a class="learn" href="#">Learn More ↓</a>
       </article>
 
       <article class="card">
         <h3>Wire Color Detection System</h3>
-        <p>Created a low-cost color sequence detection system for automation at PRICOL Limited, improving accuracy in wiring harness verification.</p>
+        <p>Low-cost color sequence detection for industrial automation.</p>
+        <div class="hidden">
+          <p>Implemented with OpenCV and Raspberry Pi, capable of 95% accuracy in real-time detection scenarios.</p>
+        </div>
         <a class="learn" href="#">Learn More ↓</a>
       </article>
 
       <article class="card">
         <h3>Gesture Controlled Robot</h3>
-        <p>Designed a Raspberry Pi-based robot that uses hand gestures for real-time control with live video streaming and motion recognition.</p>
+        <p>Real-time hand gesture-controlled robot with camera integration.</p>
+        <div class="hidden">
+          <p>Built using Raspberry Pi and Flask for live video streaming; integrated MPU6050 sensor and OpenCV gesture tracking.</p>
+        </div>
         <a class="learn" href="#">Learn More ↓</a>
       </article>
 
       <article class="card">
         <h3>Surveillance Rover</h3>
-        <p>Developed an IoT-enabled rover equipped with Pi camera for live surveillance and remote control through Flask web interface.</p>
+        <p>IoT-enabled rover for live surveillance via Flask web interface.</p>
+        <div class="hidden">
+          <p>Enabled remote control through Wi-Fi, camera feed, and obstacle avoidance system using ultrasonic sensors.</p>
+        </div>
         <a class="learn" href="#">Learn More ↓</a>
       </article>
 
@@ -213,46 +222,33 @@
 
 <!-- === SCRIPT === -->
 <script>
-  // 🌗 Theme toggle with persistence
+  // 🌗 Theme toggle
   const themeToggle = document.getElementById('themeToggle');
   themeToggle.addEventListener('click', () => {
     document.documentElement.classList.toggle('light');
-    localStorage.setItem(
-      'theme',
-      document.documentElement.classList.contains('light') ? 'light' : 'dark'
-    );
+    localStorage.setItem('theme', document.documentElement.classList.contains('light') ? 'light' : 'dark');
   });
-  if (localStorage.getItem('theme') === 'light') {
-    document.documentElement.classList.add('light');
-  }
+  if (localStorage.getItem('theme') === 'light') document.documentElement.classList.add('light');
 
-  // ✨ Fade-in animation for sections
+  // ✨ Fade-in for sections
   const fadeEls = document.querySelectorAll('.fade-in');
   const fadeObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
+    entries.forEach(entry => entry.isIntersecting && entry.target.classList.add('visible'));
   }, { threshold: 0.2 });
   fadeEls.forEach(el => fadeObserver.observe(el));
 
-  // 🎖️ Certificates staggered animation
-  const certCards = document.querySelectorAll('.cert-card');
-  const certObserver = new IntersectionObserver(entries => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        entry.target.style.transitionDelay = `${i * 0.15}s`;
-        entry.target.classList.add('visible');
-      }
+  // 🎬 Smooth open/close animation for projects
+  document.querySelectorAll('.card .learn').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.preventDefault();
+      const card = btn.closest('.card');
+      const hidden = card.querySelector('.hidden');
+      hidden.style.maxHeight = hidden.style.maxHeight ? null : hidden.scrollHeight + 'px';
+      hidden.classList.toggle('open');
+      btn.textContent = hidden.classList.contains('open') ? 'Show Less ↑' : 'Learn More ↓';
     });
-  }, { threshold: 0.15 });
-  certCards.forEach(card => certObserver.observe(card));
+  });
 </script>
 
 </body>
 </html>
-
-
-
-
