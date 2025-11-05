@@ -363,3 +363,46 @@ section {
   .cards { grid-template-columns: 1fr; }
   .certificates-grid { grid-template-columns: 1fr; }
 }
+/* === Hover Effects for Certificates and Projects === */
+.card, .cert-card {
+  transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+  will-change: transform, box-shadow;
+}
+
+.card:hover, .cert-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+  background: rgba(255, 255, 255, 0.05);
+  cursor: pointer;
+}
+
+/* === Smooth Scroll-In Animation === */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* === Updated Learn More Button Color === */
+.card .learn {
+  display: inline-block;
+  margin-top: 10px;
+  color: #bdbdbd; /* neutral gray instead of blue */
+  font-weight: 600;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 8px 14px;
+  border-radius: 8px;
+  transition: background 0.3s ease, transform 0.2s ease, color 0.3s ease;
+}
+
+.card .learn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #e6e6e6;
+  transform: translateY(-2px);
+}
