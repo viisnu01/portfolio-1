@@ -236,11 +236,6 @@ section {
 .cert-card:nth-child(2) { animation-delay: 0.2s; }
 .cert-card:nth-child(3) { animation-delay: 0.3s; }
 .cert-card:nth-child(4) { animation-delay: 0.4s; }
-.cert-card:nth-child(5) { animation-delay: 0.5s; }
-.cert-card:nth-child(6) { animation-delay: 0.6s; }
-.cert-card:nth-child(7) { animation-delay: 0.7s; }
-.cert-card:nth-child(8) { animation-delay: 0.8s; }
-.cert-card:nth-child(9) { animation-delay: 0.9s; }
 
 .cert-card:hover {
   transform: translateY(-5px);
@@ -286,72 +281,39 @@ section {
   margin: 20px 0;
 }
 
-/* === Buttons with Cinematic Animation === */
+/* === Buttons (fixed for dark mode visibility) === */
 .btn {
   display: inline-block;
   padding: 10px 18px;
   border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.05);
   color: #e6e6e6;
   text-decoration: none;
   font-weight: 500;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.4s ease;
+  transition: all 0.3s ease;
 }
 
-/* Cinematic staggered entry */
-@keyframes fadeInLeft {
-  from { opacity: 0; transform: translateX(-30px); }
-  to { opacity: 1; transform: translateX(0); }
+/* Hover effect for dark mode buttons */
+.btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
 }
 
-@keyframes fadeInRight {
-  from { opacity: 0; transform: translateX(30px); }
-  to { opacity: 1; transform: translateX(0); }
-}
-
-.hero .btn.primary {
+/* Primary button – more visible in dark mode */
+.btn.primary {
   background: var(--accent);
   color: #fff;
   border: none;
-  animation: fadeInLeft 1s ease forwards, pulse-glow 2s infinite ease-in-out;
-  animation-delay: 0.3s;
+  box-shadow: 0 0 12px rgba(37, 99, 235, 0.5);
+  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.hero .btn:not(.primary) {
-  background: rgba(255, 255, 255, 0.05);
-  color: #e6e6e6;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  animation: fadeInRight 1s ease forwards;
-  animation-delay: 0.5s;
-}
-
-/* Hover Effects */
 .btn.primary:hover {
-  box-shadow: 0 0 20px rgba(37, 99, 235, 0.8);
+  background: #1e50c3;
   transform: scale(1.05);
-}
-
-.btn:not(.primary):hover {
-  background: linear-gradient(90deg, rgba(50, 50, 50, 0.8), rgba(100, 100, 100, 0.4));
-  transform: translateY(-3px);
-  color: #ffffff;
-  border-color: rgba(255, 255, 255, 0.3);
-}
-
-/* Pulse glow animation */
-@keyframes pulse-glow {
-  0% { box-shadow: 0 0 0 rgba(37, 99, 235, 0.6); }
-  50% { box-shadow: 0 0 20px rgba(37, 99, 235, 0.8); }
-  100% { box-shadow: 0 0 0 rgba(37, 99, 235, 0.6); }
-}
-
-/* === Animations === */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: translateY(0); }
+  box-shadow: 0 0 20px rgba(37, 99, 235, 0.8);
 }
 
 /* === Light Theme Mode === */
@@ -372,54 +334,45 @@ section {
   background: rgba(255, 255, 255, 0.8);
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
+
 .light .nav a { color: #333; }
 .light .nav a.active {
   color: var(--accent);
   border-bottom: 2px solid var(--accent);
 }
 
-.light .card,
-.light .cert-card,
-.light .skills-grid div {
-  background: var(--card);
+/* Light mode button fixes */
+.light .btn {
   color: #111;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.15);
 }
 
-.light .card p,
-.light .cert-card p { color: #333; }
-
-.light h1, .light h2, .light h3 { color: #111; }
+.light .btn:hover {
+  background: rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
 
 .light .btn.primary {
   background: var(--accent);
-  color: white;
+  color: #fff;
   border: none;
-  animation: fadeInLeft 1s ease forwards, pulse-glow 2s infinite ease-in-out;
+  box-shadow: 0 0 10px rgba(37, 99, 235, 0.4);
 }
 
-.light .btn:not(.primary) {
-  background: rgba(0, 0, 0, 0.05);
-  color: #222;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  animation: fadeInRight 1s ease forwards;
+.light .btn.primary:hover {
+  background: #1e50c3;
+  box-shadow: 0 0 20px rgba(37, 99, 235, 0.6);
 }
 
-.light .btn:not(.primary):hover {
-  background: linear-gradient(90deg, rgba(230, 230, 230, 0.8), rgba(180, 180, 180, 0.5));
-  transform: translateY(-3px);
-  color: #000;
-  border-color: rgba(0, 0, 0, 0.2);
+/* === Animations === */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.light .badge.achievement { background: #2563eb; color: white; }
-.light .badge.participation { background: #9333ea; color: white; }
-.light .badge.course { background: #059669; color: white; }
-.light .badge.internship { background: #f59e0b; color: white; }
-.light .badge.finalist { background: #e11d48; color: white; }
-
-/* === Hover Effects for Certificates and Projects === */
+/* === Hover Effects for Cards === */
 .card, .cert-card {
   transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
   will-change: transform, box-shadow;
@@ -432,7 +385,7 @@ section {
   cursor: pointer;
 }
 
-/* === Smooth Scroll-In Animation === */
+/* === Scroll-In Animation === */
 .fade-in {
   opacity: 0;
   transform: translateY(30px);
@@ -443,7 +396,7 @@ section {
   transform: translateY(0);
 }
 
-/* === Responsive Design === */
+/* === Responsive === */
 @media (max-width: 900px) {
   .about-inner {
     flex-direction: column;
@@ -462,6 +415,7 @@ section {
   .cards { grid-template-columns: 1fr; }
   .certificates-grid { grid-template-columns: 1fr; }
 }
+
 
 
 
