@@ -433,5 +433,22 @@ section {
     grid-template-columns: 1fr;
   }
 }
+/* === Project Learn More Links === */
+.card .learn {
+  display: inline-block;
+  margin-top: 12px;
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
 
+.card .learn:hover {
+  color: #60a5fa;
+  transform: translateY(-2px);
+}
+
+.card .learn:active {
+  transform: translateY(1px);
+}
 
