@@ -24,6 +24,7 @@
   <!-- 💅 Styles -->
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 <header class="site-header">
   <div class="container header-inner">
@@ -169,27 +170,49 @@
   </div>
 </section>
 
-<!-- === JS === -->
+<!-- === SCRIPT === -->
 <script>
-  // 🌗 Theme toggle
+  // 🌗 Theme toggle with persistence
   const themeToggle = document.getElementById('themeToggle');
   themeToggle.addEventListener('click', () => {
     document.documentElement.classList.toggle('light');
+    localStorage.setItem(
+      'theme',
+      document.documentElement.classList.contains('light') ? 'light' : 'dark'
+    );
   });
 
-  // ✨ Scroll fade-in effect
+  // Restore previous theme
+  if (localStorage.getItem('theme') === 'light') {
+    document.documentElement.classList.add('light');
+  }
+
+  // ✨ Scroll fade-in effect for sections
   const fadeEls = document.querySelectorAll('.fade-in');
-  const observer = new IntersectionObserver(entries => {
+  const fadeObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
       }
     });
   }, { threshold: 0.2 });
+  fadeEls.forEach(el => fadeObserver.observe(el));
 
-  fadeEls.forEach(el => observer.observe(el));
+  // 🎖️ Certificates staggered fade-in
+  const certCards = document.querySelectorAll('.cert-card');
+  const certObserver = new IntersectionObserver(entries => {
+    entries.forEach((entry, index) => {
+      if (entry.isIntersecting) {
+        entry.target.style.transitionDelay = `${index * 0.15}s`;
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+  certCards.forEach(card => certObserver.observe(card));
 </script>
+
 </body>
 </html>
+
 
 
