@@ -149,14 +149,35 @@
 </article>
 
 
-      <article class="card">
-        <h3>Gesture Controlled Robot</h3>
-        <p>Real-time hand gesture-controlled robot with camera integration.</p>
-        <div class="hidden">
-          <p>Built using Raspberry Pi and Flask for live video streaming; integrated MPU6050 sensor and OpenCV gesture tracking.</p>
-        </div>
-        <a class="learn" href="#">Learn More ↓</a>
-      </article>
+<article class="card">
+  <h3>Smart Glove-Based Gesture-Controlled Robot</h3>
+  <p>
+    A wireless gesture-controlled Mecanum-wheeled robot using an ESP32 and MPU6050 sensor, enabling intuitive hand gesture navigation with real-time motion tracking and Wi-Fi communication.
+  </p>
+  <div class="hidden">
+    <p>
+      The <strong>Smart Glove-Based Gesture Control System</strong> was designed to replace traditional joystick or app-based control with a more natural, hands-free approach.  
+      The system uses an <strong>ESP32</strong> microcontroller and an <strong>MPU6050</strong> inertial measurement unit (IMU) to detect hand movements and transmit corresponding commands to the robot wirelessly over Wi-Fi.
+    </p>
+    <p>
+      The glove detects motion through accelerometer and gyroscope data from the MPU6050, processed by the ESP32 transmitter module.  
+      Commands such as <strong>forward</strong>, <strong>backward</strong>, <strong>left</strong>, <strong>right</strong>, and <strong>stop</strong> are sent to another ESP32 module on the robot, which drives the motors via an <strong>L298N motor driver</strong>.
+    </p>
+    <p>
+      The robot features <strong>Mecanum wheels</strong> that allow omnidirectional movement, offering precise motion control in all directions — forward, backward, diagonal, and rotational — without changing orientation.  
+      Real-time control is achieved through <strong>I²C communication</strong> between the ESP32 and IMU, ensuring low latency and smooth motion tracking.
+    </p>
+    <p>
+      The system’s flexible design makes it suitable for applications in <strong>assistive robotics</strong>, <strong>industrial automation</strong>, and <strong>search & rescue operations</strong>.  
+      Future enhancements include <strong>AI-based gesture prediction</strong>, <strong>computer vision integration</strong>, and <strong>autonomous path planning</strong>.
+    </p>
+    <p>
+      <strong>Tech Stack Used:</strong> ESP32, MPU6050, L298N Motor Driver, Mecanum Wheels, Python, Arduino IDE, I²C Protocol, Wi-Fi Communication.
+    </p>
+  </div>
+  <a class="learn" href="#">Learn More ↓</a>
+</article>
+
 <article class="card">
   <h3>Pi Spy Rover — Mecanum-Wheeled Surveillance Robot</h3>
   <p>
