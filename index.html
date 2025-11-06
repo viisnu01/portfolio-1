@@ -100,15 +100,32 @@
   <a class="learn" href="#">Learn More ↓</a>
 </article>
 
+ <article class="card">
+  <h3>Wire Color Sequence Detection System</h3>
+  <p>Developed a real-time wire color and sequence detection system using NVIDIA Jetson Orin Nano and Arducam IMX477, designed as a low-cost alternative to industrial sensors like Keyence LR-W70C.</p>
+  <div class="hidden">
+    <p>
+      This project, carried out during my internship at <strong>Pricol Limited (Corporate Manufacturing Engineering Department)</strong>, aimed to create a cost-effective vision-based color inspection system for wire harness verification.  
+      The system detects individual wire colors and validates their sequence to ensure compliance with product specifications during assembly.
+    </p>
+    <p>
+      The solution utilizes the <strong>Jetson Orin Nano Super Developer Kit</strong> paired with an <strong>Arducam IMX477 camera</strong>. Using <strong>OpenCV</strong> and <strong>HSV color space filtering</strong>, the system isolates wire colors in real-time, applies contour detection, and classifies each color accurately.
+    </p>
+    <p>
+      A <strong>PyQt5 GUI</strong> displays the live feed, detected colors, and sequence validation (“Correct” or “Incorrect”) in an intuitive interface.  
+      Detection logic is implemented through HSV thresholding and left-to-right positional sorting of identified colors.
+    </p>
+    <p>
+      The initial prototype was built using Raspberry Pi 5 with the Arducam IMX298 camera, later upgraded to Jetson Orin Nano for industrial-grade performance and GPU-accelerated processing.  
+      Future enhancements include <strong>multi-camera integration</strong>, <strong>AI-based classification</strong> for lighting variation handling, and <strong>PLC/SCADA connectivity</strong> for factory automation.
+    </p>
+    <p>
+      <strong>Tech Stack Used:</strong> Jetson Orin Nano, Arducam IMX477, OpenCV, Python, PyQt5, NumPy, HSV Color Model, GUI-based Vision System Design.
+    </p>
+  </div>
+  <a class="learn" href="#">Learn More ↓</a>
+</article>
 
-      <article class="card">
-        <h3>Wire Color Detection System</h3>
-        <p>Low-cost color sequence detection for industrial automation.</p>
-        <div class="hidden">
-          <p>Implemented with OpenCV and Raspberry Pi, capable of 95% accuracy in real-time detection scenarios.</p>
-        </div>
-        <a class="learn" href="#">Learn More ↓</a>
-      </article>
 
       <article class="card">
         <h3>Gesture Controlled Robot</h3>
