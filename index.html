@@ -341,19 +341,35 @@
   }, { threshold: 0.2 });
   fadeEls.forEach(el => fadeObserver.observe(el));
 
+  // === One-card-at-a-time Learn More toggle ===
   document.querySelectorAll('.card .learn').forEach(btn => {
     btn.addEventListener('click', e => {
       e.preventDefault();
       const card = btn.closest('.card');
       const hidden = card.querySelector('.hidden');
-      hidden.style.maxHeight = hidden.style.maxHeight ? null : hidden.scrollHeight + 'px';
-      hidden.classList.toggle('open');
-      btn.textContent = hidden.classList.contains('open') ? 'Show Less ↑' : 'Learn More ↓';
+      const isOpen = hidden.classList.contains('open');
+
+      // Close all cards first
+      document.querySelectorAll('.card .hidden').forEach(el => {
+        el.classList.remove('open');
+        el.style.maxHeight = null;
+      });
+      document.querySelectorAll('.card .learn').forEach(b => b.textContent = 'Learn More ↓');
+
+      // Toggle the clicked card
+      if (!isOpen) {
+        hidden.style.maxHeight = hidden.scrollHeight + 'px';
+        hidden.classList.add('open');
+        btn.textContent = 'Show Less ↑';
+      } else {
+        hidden.style.maxHeight = null;
+        hidden.classList.remove('open');
+        btn.textContent = 'Learn More ↓';
+      }
     });
   });
 </script>
 
 </body>
 </html>
-
 
