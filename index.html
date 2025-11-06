@@ -72,7 +72,7 @@
     <h2>Projects</h2>
     <div class="cards">
 
-<article class="card">
+      <article class="card">
   <h3>Smart India Hackathon 2024 — Adaptive Modulation Recognition System</h3>
   <p>
     Developed a real-time adaptive modulation recognition system for DVB-S2X signals using Software Defined Radio (SDR) and deep learning, achieving over 95% classification accuracy.
@@ -209,13 +209,54 @@
   </div>
 </section>
 
-<!-- Certificates Section -->
 <section id="certs" class="certs fade-in">
   <div class="container">
     <h2>Certificates & Achievements</h2>
     <div class="certificates-grid">
-      <!-- certificate cards as before -->
-      <!-- (unchanged, keeping your existing content) -->
+
+      <div class="cert-card"><span class="badge internship">Internship</span>
+        <h3>Internship — PRICOL Limited</h3>
+        <p><strong>Pricol Limited</strong></p>
+        <p>Recipient: Viisnu Anand S — June 16 – June 30, 2025</p>
+        <p>Completed internship at Pricol Limited, Corporate Manufacturing Engineering Department.</p>
+        <p><strong>Performance:</strong> Good</p>
+      </div>
+
+      <div class="cert-card"><span class="badge achievement">Achievement</span>
+        <h3>Certificate of Recognition for Excellence</h3>
+        <p><strong>Kumaraguru College of Technology</strong></p>
+        <p>Recipient: Viisnu Anand S — August 15, 2024</p>
+        <p>Recognition for excellence in academic and cocurricular activities.</p>
+      </div>
+
+      <div class="cert-card"><span class="badge finalist">Finalist</span>
+        <h3>Smart India Hackathon 2024 — Senior Software Edition</h3>
+        <p><strong>Ministry of Education's Innovation Cell, Government of India</strong></p>
+        <p>Recipient: Viisnu Anand S — 2024</p>
+        <p>Finalist in the Smart India Hackathon 2024, contributing to innovative software solutions.</p>
+      </div>
+
+      <div class="cert-card"><span class="badge participation">Workshop</span>
+        <h3>IEEE Antenna Design Workshop</h3>
+        <p><strong>IEEE APS Society, KCT</strong></p>
+        <p>Recipient: Viisnu Anand S — July 31, 2024</p>
+        <p>Participated in the “Antenna Design” workshop organized by IEEE APS Society, KCT.</p>
+      </div>
+
+      <div class="cert-card"><span class="badge course">Course</span>
+        <h3>Embedded Systems and IoT</h3>
+        <p><strong>NPTEL</strong></p>
+        <p>Recipient: Viisnu Anand S — 2024</p>
+        <p>Completed comprehensive course on Embedded Systems and Internet of Things.</p>
+      </div>
+
+      <div class="cert-card"><span class="badge course">Course</span>
+        <h3>AWS Foundations: Machine Learning Basics</h3>
+        <p><strong>AWS</strong></p>
+        <p>Recipient: Viisnu Anand S — January 2025</p>
+        <p>Completed foundational course on machine learning using AWS services.</p>
+      </div>
+
     </div>
   </div>
 </section>
@@ -224,11 +265,13 @@
   <div class="container">
     <h2>Contact Me</h2>
     <p>Let’s connect! You can reach me through any of the following platforms:</p>
+
     <div class="contact-actions">
       <a href="mailto:viisnuanand.s@gmail.com" class="btn primary">✉️ Mail Me</a>
       <a href="tel:9443742244" class="btn secondary">📞 Call Me</a>
       <a href="https://www.linkedin.com/in/viisnu-anand" target="_blank" class="btn secondary">🔗 LinkedIn</a>
     </div>
+
     <p style="margin-top: 20px; color: var(--muted);">
       <strong>Email:</strong> <a href="mailto:viisnuanand.s@gmail.com">viisnuanand.s@gmail.com</a><br>
       <strong>Phone:</strong> <a href="tel:9443742244">9443742244</a><br>
@@ -237,7 +280,6 @@
   </div>
 </section>
 
-<!-- === Updated JS Section (Option 1 Fix Applied) === -->
 <script>
   const themeToggle = document.getElementById('themeToggle');
   themeToggle.addEventListener('click', () => {
@@ -252,35 +294,19 @@
   }, { threshold: 0.2 });
   fadeEls.forEach(el => fadeObserver.observe(el));
 
-  // === Fixed "Learn More" toggle for each card independently ===
   document.querySelectorAll('.card .learn').forEach(btn => {
     btn.addEventListener('click', e => {
       e.preventDefault();
       const card = btn.closest('.card');
       const hidden = card.querySelector('.hidden');
-      const isOpen = hidden.classList.contains('open');
-
-      // Close all others
-      document.querySelectorAll('.card .hidden').forEach(el => {
-        el.classList.remove('open');
-        el.style.maxHeight = null;
-      });
-      document.querySelectorAll('.card .learn').forEach(b => b.textContent = 'Learn More ↓');
-
-      // Toggle clicked one
-      if (!isOpen) {
-        hidden.style.maxHeight = hidden.scrollHeight + 'px';
-        hidden.classList.add('open');
-        btn.textContent = 'Show Less ↑';
-      } else {
-        hidden.style.maxHeight = null;
-        hidden.classList.remove('open');
-        btn.textContent = 'Learn More ↓';
-      }
+      hidden.style.maxHeight = hidden.style.maxHeight ? null : hidden.scrollHeight + 'px';
+      hidden.classList.toggle('open');
+      btn.textContent = hidden.classList.contains('open') ? 'Show Less ↑' : 'Learn More ↓';
     });
   });
 </script>
 
 </body>
 </html>
+
 
