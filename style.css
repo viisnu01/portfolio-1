@@ -451,4 +451,13 @@ section {
 .card .learn:active {
   transform: translateY(1px);
 }
+/* Fix tagline visibility in light mode */
+.light .tagline {
+  color: #333 !important; /* Dark gray for visibility */
+}
+
+/* Optional: improve contrast in dark mode too */
+.tagline {
+  color: #cfcfcf;
+}
 
